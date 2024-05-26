@@ -21,6 +21,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            transition: background 0.3s, color 0.3s;
+            z-index: 1000;
+        }
+
+        .scrolled {
+            background: linear-gradient(135deg, #ffd700, #b8860b); /* Reversed Gold gradient */
+            color: #000; /* Black text color */
         }
 
         .logo {
@@ -79,7 +89,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 100px 20px 20px 20px; /* Adjust padding to account for fixed header */
             text-align: center;
         }
 
@@ -92,6 +102,12 @@
             justify-content: space-between;
             align-items: center;
             background: linear-gradient(135deg, #b8860b, #ffd700); /* Gold gradient */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .product img {
@@ -126,6 +142,12 @@
             text-decoration: none;
             margin-top: 20px;
             display: inline-block;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .cart:hover {
+            background: #ffd700;
+            color: #000;
         }
 
         footer {
@@ -138,7 +160,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="logo">UNTOUCHED</div>
         <div class="search-container">
             <div class="search-bar">
@@ -162,8 +184,8 @@
         <div class="product">
             <img src="product1.jpg" alt="Product 1">
             <div class="product-info">
-                <h2>Gaming mousepad</h2>
-                <p>The best gaming mousepad around</p>
+                <h2>Product 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p class="product-price">$19.99</p>
             </div>
             <a href="#" class="cart">Add to Cart</a>
@@ -183,6 +205,15 @@
                 alert('Search initiated for: ' + document.getElementById('searchInput').value);
             }
         }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
