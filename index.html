@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNTOUCHED</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pulsify</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         /* CSS styles */
 
@@ -14,6 +14,7 @@
             padding: 0;
             color: #ffd700; /* Metallic gold text color */
             background-color: #000; /* Black background color */
+            overflow-x: hidden;
         }
 
         header {
@@ -28,6 +29,7 @@
             top: 0;
             transition: background 0.3s, color 0.3s;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .scrolled {
@@ -36,7 +38,8 @@
         }
 
         .logo {
-            font-size: 1.5em;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8em;
             font-weight: 700;
             text-transform: uppercase;
             color: #000; /* Black text color */
@@ -44,10 +47,12 @@
         }
 
         .slogan {
+            font-family: 'Oswald', sans-serif;
             font-size: 1.2em;
-            color: #000; /* Black text color */
+            color: #ffd700; /* Metallic gold text color */
             margin-top: 10px;
             font-weight: bold;
+            text-shadow: 1px 1px #000; /* Black shadow */
         }
 
         .search-container {
@@ -64,11 +69,18 @@
         }
 
         .search-bar input[type="text"] {
-            padding: 10px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 25px;
             border: 1px solid #b8860b; /* Gold border */
-            background-color: #000; /* Black background */
+            background-color: #1a1a1a; /* Darker background */
             color: #ffd700; /* Metallic gold text color */
+            width: 300px;
+            transition: box-shadow 0.3s;
+        }
+
+        .search-bar input[type="text"]:focus {
+            box-shadow: 0 0 10px #ffd700;
+            outline: none;
         }
 
         nav {
@@ -95,6 +107,24 @@
             color: #000;
             text-decoration: none;
             font-weight: 500;
+            font-size: 1em;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
         }
 
         .container {
@@ -104,16 +134,25 @@
             text-align: center;
         }
 
+        .container h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            color: #ffd700; /* Metallic gold text color */
+            text-shadow: 2px 2px #000; /* Black shadow */
+            margin-bottom: 10px;
+        }
+
         .product {
             border: 1px solid #b8860b; /* Gold border */
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(135deg, #b8860b, #ffd700); /* Gold gradient */
+            background: linear-gradient(135deg, #1a1a1a, #333); /* Dark gradient */
             transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .product:hover {
@@ -125,24 +164,35 @@
             max-width: 150px;
             height: auto;
             margin-right: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .product img:hover {
+            transform: scale(1.1);
         }
 
         .product-info {
             flex: 1;
+            text-align: left;
         }
 
         .product-info h2 {
+            font-family: 'Oswald', sans-serif;
             margin: 0;
-            color: #000; /* Black text color */
+            color: #ffd700; /* Metallic gold text color */
+            font-size: 1.5em;
         }
 
         .product-info p {
             margin: 10px 0;
-            color: #000; /* Black text color */
+            color: #ddd; /* Light grey text color */
         }
 
         .product-price {
             font-weight: 700;
+            font-size: 1.2em;
+            color: #ffd700; /* Metallic gold text color */
         }
 
         .cart {
@@ -165,14 +215,20 @@
             background: linear-gradient(135deg, #b8860b, #ffd700); /* Gold gradient */
             color: #000; /* Black text color */
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             margin-top: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
         }
     </style>
 </head>
 <body>
     <header id="header">
-        <div class="logo">UNTOUCHED</div>
+        <div class="logo">Pulsify</div>
         <div class="search-container">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search products..." onkeypress="handleKeyPress(event)">
@@ -189,7 +245,7 @@
     </header>
 
     <div class="container">
-        <h1>Welcome to UNTOUCHED</h1>
+        <h1>Welcome to Pulsify</h1>
         <div class="slogan">Set your heart ablaze, overcome your limits</div>
         
         <div class="product">
@@ -201,11 +257,9 @@
             </div>
             <button class="cart" onclick="addToCart('Product 1', 19.99)">Add to Cart</button>
         </div>
-
-        <!-- More product listings here -->
-
-        <a href="cart.html" target="_blank" id="cartLink" class="cart">🛒 View Cart (0)</a>
+          <a href="#" id="cartLink" class="cart" onclick="showCart()">🛒 View Cart (0)</a>
     </div>
 
     <footer>
-        <p>&copy; 2024 UN
+        <p>&copy; 2024 Pulsify</p>
+    </footer>
